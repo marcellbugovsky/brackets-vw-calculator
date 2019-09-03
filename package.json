@@ -1,0 +1,14 @@
+{
+    "name": "brackets-vw-calculator",
+    "title": "VW Calculator",
+    "description": "VW Calculator for Emarsys Webproduction",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.24.0"
+    },
+    "keywords": [
+        "viewport",
+        "vw",
+        "calculator"
+    ]
+}
