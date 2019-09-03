@@ -1,7 +1,10 @@
 {
-    "name": "brackets-vw-calculator",
+    "name": "marcellbugovsky.brackets-vw-calculator",
     "title": "VW Calculator",
     "description": "VW Calculator for Emarsys Webproduction",
+    "homepage": "https://github.com/marcellbugovsky/brackets-vw-calculator",
+    "version": "1.0.0",
+    "author": "Marcell Bugovsky (https://github.com/marcellbugovsky)",
     "license": "MIT",
     "engines": {
         "brackets": ">=0.24.0"
