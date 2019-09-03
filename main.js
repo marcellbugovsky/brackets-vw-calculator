@@ -8,7 +8,7 @@ define(function (require, exports, module) {
         WorkspaceManager = brackets.getModule("view/WorkspaceManager"),
         MainViewManager = brackets.getModule("view/MainViewManager"),
         ExtensionUtils = brackets.getModule("utils/ExtensionUtils");
-
+    
     var editor;
     var cursorPos;
     var panelVisible = false;
@@ -66,13 +66,15 @@ define(function (require, exports, module) {
     });
     // Events until here
 
-    // First, register a command - a UI-less object associating an id to a handler
-    var MY_COMMAND_ID = "marcellbugovsky.personalcalculator";
-    CommandManager.register("VW calculator 2.0", MY_COMMAND_ID, handleCalcPanel);
+    // Now register the command (UI-less)
+    var COMMAND_ID = "marcellbugovsky.personalcalculator";
+    CommandManager.register("VW calculator", COMMAND_ID, handleCalcPanel);
 
     // Then create a menu item bound to the command
-    // The label of the menu item is the name we gave the command (see above)
-    var menu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
-    menu.addMenuItem(MY_COMMAND_ID, keybinding);
+    var menu = Menus.getMenu(Menus.AppMenuBar.EDIT_MENU);
+    if (menu) {
+        menu.addMenuDivider();
+        menu.addMenuItem(COMMAND_ID, keybinding);
+    }
 
 });
