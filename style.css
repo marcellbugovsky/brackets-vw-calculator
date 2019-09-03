@@ -1,0 +1,31 @@
+.vw-calc {
+    background-color: #1d1f21;
+    border: 1px solid black;
+    border-radius: 3px;
+    left: calc(50% - 250px);
+    top: calc(50% - 75px);
+    position: fixed;
+    z-index: 5000;
+    width: 500px;
+    height: 150px;
+    padding: 5px;
+    
+    display: none;
+}
+
+.vw-calc * {
+    box-sizing: border-box;
+}
+
+.vw-calc table {
+    width: 100%;
+}
+
+.vw-calc table td {
+    width: 50%;
+}
+
+.vw-calc input {
+    width: 100%;
+    height: auto;
+}
