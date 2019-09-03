@@ -13,7 +13,7 @@ define(function (require, exports, module) {
     var cursorPos;
     var panelVisible = false;
     var $panelHtml = $(require("text!panel.html"));
-    var keybinding = "Ctrl-Alt-W";
+    var keybinding = "Alt-V";
 
     ExtensionUtils.loadStyleSheet(module, 'style.css');
 
