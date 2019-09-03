@@ -36,7 +36,6 @@ define(function (require, exports, module) {
         panelVisible = false;
         $panelHtml.hide();
         MainViewManager.focusActivePane();
-        editor.setCursorPos(cursorPos);
     }
     
     function panelShow() {
