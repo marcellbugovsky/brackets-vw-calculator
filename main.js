@@ -45,17 +45,17 @@ define(function (require, exports, module) {
     }
     
     // Events start here
-    $("#vwcalc #type-a-value").keydown(function (e) {// Triggeres whenever a key is pressed
-        if (e.which != 13) { // Whenever any key exept enter is pressed
-            $("#vwcalc #type-a-value").on('input', function() {
-                console.log($("#type-a-value").val());
-                $("#result-vw").val(
-                    (Math.round((parseFloat((($("#type-a-value").val()) / parseFloat($("#screen-x").val()) * 100)|| 0)) * 100) / 100) + "vw"
-                ); 
-            });
-        } else { // When enter is pressed we are done
+    $("#vwcalc #type-a-value").keyup(function (e) {// Triggeres whenever a key is pressed
+        if (e.which != 13 && e.which != 27) { // Whenever any key exept enter is pressed
+            console.log($("#type-a-value").val());
+            $("#result-vw").val(
+                (Math.round((parseFloat((($("#type-a-value").val()) / parseFloat($("#screen-x").val()) * 100)|| 0)) * 100) / 100) + "vw"
+            ); 
+        } else if (e.which == 13) { // When enter is pressed we are done
             panelHide();
             editor.document.replaceRange($("#vwcalc #result-vw").val(), cursorPos);
+        } else {
+            panelHide();
         }
     });
     
