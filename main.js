@@ -67,7 +67,7 @@ define(function (require, exports, module) {
     // Events until here
 
     // Now register the command (UI-less)
-    var COMMAND_ID = "marcellbugovsky.personalcalculator";
+    var COMMAND_ID = "marcellbugovsky.vwcalculator";
     CommandManager.register("VW calculator", COMMAND_ID, handleCalcPanel);
 
     // Then create a menu item bound to the command
