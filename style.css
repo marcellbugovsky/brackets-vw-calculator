@@ -1,5 +1,9 @@
+.vw-calc * {
+    box-sizing: border-box;
+}
+
 .vw-calc {
-    background-color: #1d1f21;
+    background-color: white;
     border: 1px solid black;
     border-radius: 3px;
     left: calc(50% - 250px);
@@ -7,14 +11,30 @@
     position: fixed;
     z-index: 5000;
     width: 500px;
-    height: 150px;
-    padding: 5px;
     
     display: none;
 }
 
-.vw-calc * {
-    box-sizing: border-box;
+.dark .vw-calc {
+    background-color: black;
+}
+
+.vw-calc .title {
+    width: 100%;
+    padding: 5px;
+    background-color: #D4D6D9;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.dark .vw-calc .title {
+    background-color: #303336;
+}
+
+.vw-calc .container {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
 }
 
 .vw-calc table {
