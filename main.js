@@ -5,21 +5,25 @@ define(function (require, exports, module) {
     var CommandManager = brackets.getModule("command/CommandManager"),
         Menus = brackets.getModule("command/Menus"),
         EditorManager = brackets.getModule("editor/EditorManager"),
-        WorkspaceManager = brackets.getModule("view/WorkspaceManager"),
         MainViewManager = brackets.getModule("view/MainViewManager"),
         ExtensionUtils = brackets.getModule("utils/ExtensionUtils");
+    var panel = $(require("text!panel.html"));
+    var keybinding = "Alt-V";
     
     var editor;
     var cursorPos;
     var panelVisible = false;
-    var $panelHtml = $(require("text!panel.html"));
-    var keybinding = "Alt-V";
 
+    // Setting up the panel
     ExtensionUtils.loadStyleSheet(module, 'style.css');
-
-    $panelHtml.appendTo('body').on('mouseleave', function () {
+    panel.appendTo('body').on('mouseleave', function () {
         panelHide();
     });
+    
+    // Setting some variables for DOM targetting within the panel
+    var inputWidth = $("#vwcalc #vw-calc-container #screen-x");
+    var inputpx = $("#vwcalc #vw-calc-container #type-a-value");
+    var output = $("#vwcalc #vw-calc-container #result-vw");
 
     // Shwoing or hiding the panel 
     function handleCalcPanel() {
@@ -34,25 +38,29 @@ define(function (require, exports, module) {
     
     function panelHide() {
         panelVisible = false;
-        $panelHtml.hide();
+        panel.hide();
         MainViewManager.focusActivePane();
     }
     
     function panelShow() {
         panelVisible = true;
-        $panelHtml.show();
-        $("#vwcalc #type-a-value").focus();
+        panel.show();
+        inputpx.focus();
+    }
+    
+    function insert() {
+        panelHide();
+        editor.document.replaceRange(output.val(), cursorPos);
     }
     
     // Events start here
-    $("#vwcalc #type-a-value").keyup(function (e) {// Triggeres whenever a key is pressed
+    inputpx.keyup(function (e) {// Triggeres whenever a key is pressed
         if (e.which != 13 && e.which != 27) { // Whenever any key exept enter is pressed
-            $("#result-vw").val(
-                (Math.round((parseFloat((($("#type-a-value").val()) / parseFloat($("#screen-x").val()) * 100)|| 0)) * 100) / 100) + "vw"
+            output.val(
+                (Math.round((parseFloat(((inputpx.val()) / parseFloat(inputWidth.val()) * 100)|| 0)) * 100) / 100) + "vw"
             );
         } else if (e.which == 13) { // When enter is pressed we are done
-            panelHide();
-            editor.document.replaceRange($("#vwcalc #result-vw").val(), cursorPos);
+            insert();
         } else {
             panelHide();
         }
@@ -60,8 +68,7 @@ define(function (require, exports, module) {
     
     // When the button is pressed we are done too
     $("#vwcalc td button").click(function () {
-        panelHide();
-        editor.document.replaceRange($("#vwcalc #result-vw").val(), cursorPos);
+        insert();
     });
     // Events until here
 
